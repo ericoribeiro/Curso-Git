@@ -1,0 +1,148 @@
+Curso de GitHub
+
+AULA 01
+
+Configurando GitHub
+	- Abrir a ferramenta Git Bash (prompt de comando do git)
+	- GIT CONFIG --GLOBAL USER.NAME "<NOME DO USUARIO>"
+	- GIT CONFIG -- GLOBAL USER.EMAIL "<EMAIL DO USUARIO>"
+
+AULA 02 (TRABALHANDO SOZINHO NO PROJETO)
+	- Ir em propriedades do atalho GIT BASH
+	- Retirar o comando "--cd-to-home" e colocar o diretório de trabalho no campo "iniciar em"
+	- Acessar a pasta onde o repositório será criado e digitar o comando "GIT INIT" para criar um repositório. (dentro da pasta escolhida terá uma pasta ".git" invisivel).
+	- Para ignorar arquivos que vc não queira versionar, criar um arquivo chamado ".gitignored".
+	- Dentro do arquivo ".gitignore" adicionar os arquivos que vc não queira versionar (uma informação por linha)
+		=> .gitignore (o próprio arquivo)
+		=> erico.txt
+		=> temp/ (neste caso é uma pasta)
+
+
+
+**Comandos
+	- CTRL + L => limpar a tela.
+	- CTRL + T => Abrir nova tela de comando.
+	- MKDIR => cria um diretório.
+	- CD => acessa um diretório.
+	- CD..(dois pontos) => volta um diretório.
+	- LS => Lista os arquivos dentro do diretório.
+	- CD diretório 1/diretório 2/diretório 3 (para acessar uma pasta especifica sem ficar digitando linha por linha)
+	- CLEAR => limpa a tela 
+
+	*********** Comandos GITHUB  ***************
+	- GIT STATUS => mostra se o diretório é um diretório .git.
+	- GIT INIT => Transforma o diretório em um diretório github.
+	- GIT ADD <NOME DO ARQUIVO> => Marca os arquivos que vão, mais tarde, ser comitados.
+	- GIT ADD .(Ponto Final) => Adiciona todos os arquivos que foram criados e não foram comitado ainda.
+	- GIT ADD *.TXT  => Adiciona todos os arquivos txt's da pasta.
+	- GIT RM <NOME DO ARQUIVO> => Remove o arquivo do git.
+	- GIT RM -F <NOME DO ARQUIVO> => Exclui o arquivo definitivamente.
+	- GIT COMMIT => Comita o arquivo para o servidor.
+	- GIT COMMIT -M '<MENSAGEM>' => Commita o arquivo junto com uma mensagem de descrição.
+	- GIT COMMIT -A -M "<MENSAGEM>" => Pula a etapa do "GIT ADD" e commita os arquivos modificados
+	- GIT DIFF  => Mostra as linhas adicionadas e linhas apagadas.
+	- GIT DIFF --STAGED => Mostra as linhas adicionadas ou e apagadas na staged área (area de transferencia para comits)
+	- GIT LOG => Mostra o hitórico de todos os "comits" desde o começo do projeto até agora.(No log mostra as chaves de cada "commit"  podendo assim retornar o codigo naquela chave).
+	- GIT LOG -P => Mostra todos os commits em ordem cronologicas e mais suas alterações.(Apertar a tecla enter faz descer a tela)
+	- GIT LOG -P -1 => Mostra o ultimo commit realizado com as suas alterações.
+	- GIT LOG --PRETTY=ONELINE => Mostra todos os commits realizados naqueles arquivos.
+	- GITK => Visualizador de relatorios de commits(serve parra facilitar a visualização do log).
+
+
+	************* Desfazendo Operações  no GITHUB **************
+
+	1) Realizou um commit, mas esqueceu um arquivo que deveria fazer parte do mesmo. Edição do commit. Pode-se alterar arquivos comiitados tbm.
+		- GIT ADD . (Adiciona o arquivo ao staged para ser commitado)
+		- GIT COMMIT --AMEND -M "<Comentários>". 
+
+	2) Removendo o arquivo da stage área. (Adicionei, mas não quero mais commitá-lo)
+	    - GIT RESET HEAD => Retira o arquivo da lista de arquivos a serem comitados.
+
+	3) Remover as modificações feitas no código até o estado original antes do commit
+		- GIT CHECKOUT -- <NOME DO ARQUIVO> => desfaz a edição no arquivo a ser commitado. 
+
+	************************************************************************************
+
+	********************** TAGS e Branches *********************************************
+
+	Tags são atalhos para um determinado status de um sistema
+
+	- GIT TAG => Lista as tags do sistema
+	- GIT SHOW <NOME DA TAG> => Mostra a tag de forma mais detalhada.
+	- GIT TAG -A <NOME DA TAG> -m "<mensagem>" (Exemplo: git tag -a v1.0)
+	- GIT CHECKOUT <NOME DA TAG> => Retorna os arquivos como estavam naquela versão
+	- GIT CHECKOUT MASTER => Retorna para branch master
+	- GIT TAG -D <NOME DA TAG> => Deleta a tag
+
+	Branches são ramificações do seu sistema
+
+	- GIT BRANCH => Lista todas as branches criadas no seu sistema.
+	- GIT BRANCH <NOME DA BRANCH> => Cria uma branch
+	- GIT CHECKOUT <NOME DA BRANCH> => Faz a transição dos arquivos para a branch criada
+	- GIT CHECKOUT -B <NOME DA BRANCH> => Cria a branch e já faz a transição dos arquivos ao mesmo tempo
+	- GIT MERGE <NOME DA BRANCH> => Faz o merge da branch indicada (para isso acontecer vc presica estar na branch de destino)
+	- GIT BRANCH -D <NOME DA BRANCH> => Deleta a branch
+
+	************************************* Servidor Local como Repositório ***********************************
+
+	OBS: Ao criar uma pasta, certificar que esta pasta se encontra compartilhada com outros computadores.
+
+	1) Criar uma pasta que contenha todos os projetos.
+	2) Dentro desta pasta criar uma subpasta para armazenar o projeto que será utilizado por vários usuários
+	3) Abrir o "CMD" do git e utilizar o comando:
+		- GIT INIT --BARE => Cria um repositório para vários usuários.
+	4) Pronto o repositorio no servidor.
+	
+	==> Agora na máquina de trabalho local
+
+	OBS: É necessário clonar o repositório do servidor e depois suba de volta para ele (Só da primeira vez).	
+
+	1) Escolher um local da máquina para salvar a pasta do repositório.
+	2) Utilizar a o "CMD" do git e digitar esse comando:
+		- GIT CLONE FILE:////<NOME DO SERVIDOR>/<DIRETÓRIO>/<PASTA DO REPOSITÓRIO>
+		- EX: GIT CLONE FILE:////VMSERVER/PROJETOS/SIGEB 
+
+		- GIT CLONE FILE:////<NOME DO SERVIDOR>/<DIRETÓRIO>/<PASTA DO REPOSITÓRIO> <NOME DO PROJETO NA SUA MÁQUINA>
+		- EX: GIT CLONE FILE:////VMSERVER/PROJETOS/SIGEB PROJETOSIGEB
+	3) Cria a estrutura do projeto dentro da pasta com o clone do repositório
+		- Add pastas e arquivos
+	4) Usando o git bash entrar na pasta do repositório 
+		- GIT STATUS
+		- GIT ADD.
+		- GIT COMMIT
+		- GIT REMOTE => Comando utilizado para saber o nome do seu remote(É necesssário saber para poder enviar as modificações para o servidor).
+		- GIT PUSH <NOME DO REMOTE> MASTER => Envia para o servidor
+
+	************************** outra situação *******************************
+	
+	OBS: alguem alterou um arquivo que vc estava trabalhando tbm e agora vc precisa atualizar esse aqrquivo com as atualizações de outra pessoa.
+	
+	1) A pessoa disponibilizou as modificações no servidor e vc agora vai baixar essas modificações para a sua máquina
+		- GIT PULL <NOME DO REMOTE> MASTER => Baixa as modificações do repositório do servidor 	
+
+	1.1) Se a pessoa alterou alguma coisa que vc estva mexendo então é necessário criar uma branch para armazenar essa atualização e depois fazer um merge.
+		- GIT FETCH <NOME DO REMOTE> <NOME DO BRANCH>	
+
+	**************************** Usando o repositório Github *************************************
+
+	OBS: Para se usar o repositório github é necessário fazer com que o github reconheça a sua máquina e isso é feito através de uma chave ssh.
+	No Git Bash
+	- SSH-KEYGEN
+
+
+
+
+
+
+
+
+
+
+
+	- GIT CONFIG --GLOBAL CREDENTIAL.HELPER 'STORE'  (global valendo para todo o computador)
+
+	//você pode criar  um arquivo contendo a sua senha do git e deixá-lo na pasta para que possa ser lido
+	- VI .GIT
+	- VI .GIT-CREDENTIALS
+
+ 
