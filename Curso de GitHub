@@ -129,20 +129,9 @@ AULA 02 (TRABALHANDO SOZINHO NO PROJETO)
 	No Git Bash
 	- SSH-KEYGEN
 
+	Abra a pasta indicada no git bash, abra o arquivo .pub em algum editor e copie a chave.
+	Adicione a chave no github em Settings
+	Pronto, o gitub reconhece a sua máquina.
 
-
-
-
-
-
-
-
-
-
-	- GIT CONFIG --GLOBAL CREDENTIAL.HELPER 'STORE'  (global valendo para todo o computador)
-
-	//você pode criar  um arquivo contendo a sua senha do git e deixá-lo na pasta para que possa ser lido
-	- VI .GIT
-	- VI .GIT-CREDENTIALS
 
  
